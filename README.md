@@ -95,23 +95,36 @@ renders "date pending verification".
 
 ---
 
+## Verified and loaded (session 2)
+
+Divya Villas now carries document-corroborated data throughout — promoter and PAN, registered
+office, survey numbers, district, the Form Ex3/Ex4 financial position, the designated account
+(bank and IFSC only), the encumbrance period, the Supreme Court extension cause, and the 94%
+declared figure cited to Form Ex5 of 06.12.2025 and the Form Ex7 affidavit of 15.12.2025.
+
+Figures render exactly as filed. Nothing in this repo parses, sums or differences them.
+
 ## Founder-input checklist
 
-Everything currently awaiting your input, in one place.
+Everything still awaiting your input, in one place.
 
-### `data/projects.json`
+### `data/projects.json` — Divya Villas
 
-| Project | Field | Current value | Needed |
-|---|---|---|---|
-| Divya Villas | `declared_series[1].pct` / `.source` | `78`, `"PENDING — founder to fill from QPR"` | The real Q2-2025 declared figure and its filing reference. Renders as an interpolated (hollow, dotted) point until then. |
-| Divya Villas | `observed_series[0].basis` | `"estimated from imagery — pending founder annotation"` | Your annotation of the 06.12.2025 imagery. |
-| Divya Villas | `location.lat` / `.lng` | `12.35, 76.62`, `approx: true` | Exact site coordinates. Drop `approx` when set. |
-| Divya Villas | `capture_provenance[0].capture_dates` | `"PENDING — founder to confirm on frame export"` | Actual archive capture dates. |
-| Monitored A / B / C | `name` | `FILL_FROM_KRERA_PORTAL` | Project name — see `DECISIONS.md` §1 before filling. |
-| Monitored A / B / C | `promoter` | `FILL_FROM_KRERA_PORTAL` | Promoter name. |
-| Monitored A / B / C | `rera_no` | `FILL_FROM_KRERA_PORTAL` | RERA registration number. |
-| Monitored A / B / C | `declared_series[0]` | `date: FILL_FROM_KRERA_PORTAL`, `pct: -1` | One declared figure with its date and filing source. `pct: -1` is the "pending" sentinel — the UI shows an em-dash, never a number. |
-| Monitored A / B / C | `location` | Whitefield / Hebbal / Sarjapur Road, `approx: true` | Real site coordinates once the projects are chosen. |
+| Field | Current value | Needed |
+|---|---|---|
+| `location.lat` / `.lng` | `12.35, 76.62`, `approx: true` | Exact site coordinates. Drop `approx` when set. |
+| `observed_series[0].basis` | `"estimated from imagery — pending founder annotation"` | Your annotation of the 06.12.2025 imagery. |
+| `capture_provenance[0].capture_dates` | `"PENDING — founder to confirm on frame export"` | Actual archive capture dates. |
+
+### `data/projects.json` — the three monitored projects
+
+| Field | Current value | Needed |
+|---|---|---|
+| `name` | `FILL_FROM_KRERA_PORTAL` | Project name — read `DECISIONS.md` §1 first. |
+| `promoter` | `FILL_FROM_KRERA_PORTAL` | Promoter name. |
+| `rera_no` | `FILL_FROM_KRERA_PORTAL` | RERA registration number. |
+| `declared_series[0]` | `date: FILL_FROM_KRERA_PORTAL`, `pct: -1` | One declared figure with its date and filing source. `pct: -1` is the pending sentinel — the UI shows an em-dash, never a number. |
+| `location` | Whitefield / Hebbal / Sarjapur Road, `approx: true` | Real site coordinates once chosen. |
 
 ### `data/photos/divya-villas/photos.json`
 
@@ -121,11 +134,18 @@ All 13 entries: `"date": "PENDING_VERIFICATION"` → ISO date.
 
 All 12 entries: `"status": "placeholder"` → `"real"` once the real export is dropped in.
 
-### Open question
+### Open question — earlier quarterly filings
 
-`vantis/data/qpr.json` holds a Divya Villas quarterly series (Q4'24 35% → Q1'26 96%). I did
-**not** import it because I could not find a filing backing those numbers, and Divya is a
-real project. **Confirm or discard it.** See `DECISIONS.md` §3.
+Divya Villas has **one** certified progress figure on file: 94% at 06.12.2025. Registration
+(0%, 18.09.2024) is the only other point. The 15 months between them carry no certified
+observation, and `/site/divya-villas` says so on its face.
+
+If earlier quarterly filings (Forms 4/5/6) exist and can be retrieved, they belong in
+`declared_series` with their filing references, and the page will switch back to a two-line
+chart automatically once a second **observed** point also exists.
+
+`vantis/data/qpr.json` holds an unsourced quarterly series (Q4'24 35% → Q1'26 96%) that was
+**not** imported — see `DECISIONS.md` §3. Confirm or discard it.
 
 ---
 

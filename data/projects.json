@@ -2,15 +2,45 @@
   {
     "id": "divya-villas",
     "name": "Divya Villas",
-    "promoter": "JDA Projects",
+    "promoter": "M/s JDA Projects (Partnership Firm)",
+    "promoter_pan": "AAIFJ9675L",
+    "registered_office": "No. 580, CH/44/3A, 1st Floor, Vanivilas Double Road, Chamaraja Mohalla, Lakshmipuram, Mysuru 570004",
     "rera_no": "PRM/KA/RERA/1268/378/PR/180924/007034",
+    "survey_numbers": "83/2 and 84/2",
+    "district": "Mysuru",
     "provenance": "REAL",
     "status": "verified",
     "location": { "lat": 12.35, "lng": 76.62, "label": "Mysuru", "approx": true },
+
+    "finance": {
+      "project_cost": "13,85,00,000",
+      "funds_utilised_to_date": "13,98,99,058",
+      "promoter_own_funds": "9,85,00,000",
+      "total_borrowings": "4,55,00,000",
+      "lender": "Jamnadas Morarjee Finance Private Limited",
+      "allottee_collections": "0",
+      "source": "Form Ex3 (Fund Utilisation) and Form Ex4 (Fund Required), 06.12.2025"
+    },
+    "designated_account": {
+      "bank": "Canara Bank, Kuvempunagar, Mysuru",
+      "ifsc": "CNRB0001512"
+    },
+    "delay_cause": "Extension sought pending final judgment of the Supreme Court of India in JDA Projects v. Jamnadas Morarjee Finance Pvt Ltd, delivered 17.04.2025",
+    "encumbrance_period": "EC on file for Sy. Nos. 83/2 and 84/2, 01.04.2023 to 21.11.2025",
+
+    "thesis": {
+      "heading": "What this project demonstrates",
+      "body": [
+        "Divya Villas is certified 94% complete, on oath, on the strength of a single engineer's certificate — Form Ex5 dated 06.12.2025, affirmed in a Form Ex7 affidavit sworn 15.12.2025.",
+        "That engineer is appointed and paid by the promoter. Nowhere in the statutory scheme does an independent party observe the site and confirm the figure.",
+        "This project is the honest case: what we observe agrees with what was declared. The point is not that the certificate is wrong. The point is that nothing in the scheme would have told anyone if it were.",
+        "That is the certification gap the Verified Progress Record closes."
+      ]
+    },
+
     "declared_series": [
       { "date": "2024-09-18", "pct": 0, "source": "Registration, 18.09.2024", "interpolated": false },
-      { "date": "2025-06-30", "pct": 78, "source": "PENDING — founder to fill from QPR", "interpolated": true },
-      { "date": "2025-12-06", "pct": 94, "source": "Form Ex5, Engineer's Certificate, 06.12.2025", "interpolated": false }
+      { "date": "2025-12-06", "pct": 94, "source": "Form Ex5, Engineer's Certificate for Status of Work, 06.12.2025; affirmed on oath in Form Ex7 affidavit sworn 15.12.2025", "interpolated": false }
     ],
     "observed_series": [
       { "date": "2025-12-06", "pct": 91, "basis": "estimated from imagery — pending founder annotation", "interpolated": false }
@@ -151,6 +181,16 @@
     "status": "divergence",
     "scenario_note": "Illustrative scenario: declared progress continues to climb while observed physical progress flattens from month 14. No real developer, project or filing is depicted.",
     "location": { "lat": 13.2482, "lng": 77.7124, "label": "Illustrative site · Karnataka" },
+
+    "thesis": {
+      "heading": "What this scenario illustrates",
+      "body": [
+        "In this illustrative scenario, declared progress climbs to 62% while observed physical progress has not moved since month 14. The declared curve is what the statutory filings would show; the observed curve is what the site would show.",
+        "Under RERA s.4(2)(l)(D), money leaves the mandatory 70% designated account against completion certificates produced by an engineer, architect and chartered accountant — all appointed and paid by the promoter. A rising declared curve is what authorises each withdrawal.",
+        "Where the two curves separate, withdrawals continue against progress that has not physically occurred. The escrow bank, the lender and the regulator have no independent way to see the gap, because no independent observation exists in the scheme.",
+        "This is a constructed scenario built to show the failure mode. It depicts no real developer, project, filing or account."
+      ]
+    },
     "declared_series": [
       { "date": "2023-06-30", "pct": 0, "source": "Illustrative registration", "interpolated": false },
       { "date": "2023-09-30", "pct": 8, "source": "Illustrative quarterly filing Q2", "interpolated": false },

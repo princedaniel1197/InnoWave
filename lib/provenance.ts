@@ -60,6 +60,25 @@ export function statusHex(s: ProjectStatus): string {
   }
 }
 
+/** True when any real figure exists on either side. */
+export function hasAnyProgressData(p: Project): boolean {
+  return (
+    p.declared_series.some(x => x.pct >= 0) || p.observed_series.some(x => x.pct >= 0)
+  )
+}
+
+/**
+ * A two-line divergence curve needs a trajectory on BOTH sides. With one
+ * certified observation there is no observed trajectory, and drawing a line
+ * through it would imply filings that do not exist. Such projects render the
+ * single-point evidence position instead.
+ */
+export function canPlotSeries(p: Project): boolean {
+  const declared = p.declared_series.filter(x => x.pct >= 0).length
+  const observed = p.observed_series.filter(x => x.pct >= 0).length
+  return declared >= 2 && observed >= 2
+}
+
 export function latestPoint<T extends { date: string }>(series: T[]): T | null {
   if (!series.length) return null
   return series.reduce((a, b) => (new Date(b.date) > new Date(a.date) ? b : a))

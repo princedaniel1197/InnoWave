@@ -64,6 +64,11 @@ mid-series 78% left flagged `interpolated: true` and sourced
 entity — rule 8 forbids inventing data for one. The figures are in the founder checklist
 in `README.md` as a candidate source for you to confirm or discard.
 
+> **Updated in session 2.** The interpolated 78% point has since been **deleted** — no filing
+> backs it. Divya now carries the registration point and one certified point, and the page
+> renders a single-point evidence position rather than a curve. See §19. The `qpr.json`
+> question itself remains open.
+
 ---
 
 ## 4. Synthetic projects carry no RERA-shaped number
@@ -251,3 +256,123 @@ is shared between both paths and is verified.
 **Not a design decision — an operational note.** Running a production build against the same
 `.next` directory as a running dev server corrupts it (`Cannot find module './vendor-chunks/…'`).
 Hit once during this build; fixed by restarting dev. Stop the dev server before `npm run build`.
+
+---
+
+# Session 2 — verified Divya Villas data
+
+---
+
+## 17. Filed figures are stored as strings, never numbers
+
+**Ambiguity.** The financial figures arrived in Indian digit grouping —
+`13,85,00,000`, `13,98,99,058`. Storing them as JSON numbers would be the obvious move.
+
+**Decision.** Stored as **strings, in the exact form supplied**. `lib/types.ts` documents that
+renderers may prefix a currency unit but may not alter the digits. Nothing in the repo parses
+them to `Number`.
+
+**Why.** You said do not round, reformat or "improve" any figure. A number would immediately
+lose the grouping, and re-emitting it through `toLocaleString('en-IN')` is a reformat — one
+that silently depends on the viewer's locale. A string cannot drift. The honesty sweep now
+asserts all four figures appear verbatim in the rendered HTML (check 11).
+
+The only addition is a `₹` in the field **label**, not in the value.
+
+---
+
+## 18. No arithmetic is performed on Divya's filed figures
+
+**The judgement call I most want you to look at.**
+
+Funds utilised to date (`13,98,99,058`) **exceed** the stated project cost (`13,85,00,000`) by
+`13,99,058`. That is visible in the filings and a reader can do the subtraction.
+
+**Decision.** The panel states both figures side by side and computes nothing. No delta, no
+percentage, no colour, no callout.
+
+**Why.** Rule 4 forbids a REAL entity carrying a risk score or any fault-implying claim.
+Vantis computing and surfacing "utilisation exceeds cost by ₹13.99 lakh" against a named real
+promoter is exactly that — a derived adverse finding about your family's firm, on a public
+URL, in front of law faculty. There may be an entirely ordinary explanation (cost revision,
+interest, timing). We are not the party to adjudicate it, and the VPR's scope block now says
+in terms that this record makes no finding on fund utilisation.
+
+**To overrule:** it would need to be your explicit call, and I would want the explanation
+alongside it.
+
+---
+
+## 19. Divya renders a single-point evidence position, not a curve
+
+**Decision.** With the interpolated 78% removed, Divya has two declared points (registration
+and the certificate) and **one** observed point. `canPlotSeries()` in `lib/provenance.ts`
+requires ≥2 points on **both** sides; Divya fails it and renders `CertifiedPoint` instead —
+a mostly empty axis with the 15-month gap labelled `NO CERTIFIED OBSERVATION ON FILE`.
+
+**Why.** A two-line chart through one observed point draws a trajectory no filing supports.
+The rule is data-driven rather than a per-project flag, so if you later add filings the page
+switches back to the curve on its own, with no code change.
+
+Kaveri and Meridian both pass and keep the full two-line chart.
+
+---
+
+## 20. "Divergence" is now reserved for findings
+
+**Decision.** The third headline stat on `/site/[id]` is labelled **"Gap"** when the reading
+is within tolerance and **"Divergence"** only when it is beyond. In practice that means no
+REAL entity ever displays the word.
+
+**Why.** `DIVERGENCE — 3 pt` sitting beside a named real project reads as an adverse finding
+even with "within tolerance" underneath it. Rule 4 says a REAL entity may never carry a
+divergence flag; the caption was doing the work the label was undoing.
+
+---
+
+## 21. The escrow story moved to Meridian, and is now enforced
+
+**Finding.** The §3 audit turned up **no** existing escrow or drawdown claim anywhere in the
+UI — the only mentions of escrow were in `CLAUDE.md` and `README.md` as general product
+framing. So this was additive, not a removal.
+
+**Decision.** Each project carries its own `thesis` block in data. Divya's states the
+certification gap — 94% on oath on one certificate from a professional the promoter appoints
+and pays, with no independent observation anywhere in the scheme. Meridian's carries the
+s.4(2)(l)(D) drawdown mechanism.
+
+Two new permanent sweep checks (9) enforce the split: no REAL entity's routes may contain
+drawdown language, and Meridian must contain it. A future session cannot quietly reattach the
+escrow story to a real project.
+
+**Why keep the thesis in data rather than in the screen?** So a project can never inherit
+another project's argument by editing shared JSX.
+
+---
+
+## 22. The designated account number is never stored
+
+**Decision.** `data/projects.json` holds bank and IFSC only. The account number is not in the
+repo at all — not in a comment, not in a field. Sweep check 10 asserts no route renders an
+account-number label.
+
+**Why.** You asked for it not to be rendered. Not storing it is strictly stronger than not
+rendering it, and it means a future careless edit cannot expose it.
+
+---
+
+## 23. Print budget re-verified after the added fields
+
+Divya's record grew with the registry fields and initially fit within **38px** of the A4
+budget — too tight for printer variance. The print block was tightened (rules 7px→5px,
+sections 10px→8px) and the project block now goes **three-up on paper**, which removes a row.
+
+Measured after the change, against a 1031px budget (A4 at 96dpi less 12mm margins):
+
+| Record | Height | Headroom |
+|---|---|---|
+| Divya Villas (now the longest) | 926px | 105px |
+| Project Meridian | 856px | 175px |
+
+Method: replicate the `@media print` rules under screen media at 688px width, then read
+`scrollHeight`. Re-run it if you add fields to the document.

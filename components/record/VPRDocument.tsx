@@ -51,6 +51,9 @@ export default function VPRDocument({ p }: { p: Project }) {
   const latestDeclared = p.declared_series.filter(d => d.pct >= 0).slice(-1)[0]
   const latestObserved = p.observed_series.filter(o => o.pct >= 0).slice(-1)[0]
 
+  const placeholderFrames = frames?.frames.filter(f => f.status === 'placeholder').length ?? 0
+  const pendingPhotoDates = photos?.photos.filter(ph => ph.date === PENDING_DATE).length ?? 0
+
   const watermark = synth ? 'SPECIMEN — SYNTHETIC SCENARIO' : 'SPECIMEN'
 
   return (
@@ -112,16 +115,39 @@ export default function VPRDocument({ p }: { p: Project }) {
         {/* 2 — Project block */}
         <section className="vpr-block mt-5">
           <SectionTitle n="1">Project</SectionTitle>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <div className="vpr-fields grid grid-cols-2 gap-x-6 gap-y-3">
             <Field label="Project" value={displayName(p)} />
             <Field label="Promoter" value={displayPromoter(p)} />
             <Field label="RERA registration" value={displayRera(p)} />
-            <Field label="Location" value={p.location.label + (p.location.approx ? ' (approximate)' : '')} />
+            {p.survey_numbers ? (
+              <Field label="Survey numbers" value={p.survey_numbers} />
+            ) : (
+              <Field
+                label="Location"
+                value={p.location.label + (p.location.approx ? ' (approximate)' : '')}
+              />
+            )}
+            {p.survey_numbers && (
+              <Field
+                label="Location"
+                value={
+                  (p.district ? p.district + ' district · ' : '') +
+                  p.location.label +
+                  (p.location.approx ? ' (approximate)' : '')
+                }
+              />
+            )}
+            {p.promoter_pan && <Field label="Promoter PAN" value={p.promoter_pan} />}
             <Field label="Record date" value={formatDateLong(RECORD_DATE)} />
             <Field
               label="Observation date"
               value={latestObserved ? formatDateLong(latestObserved.date) : 'Not yet observed'}
             />
+            {p.registered_office && (
+              <div className="col-span-2">
+                <Field label="Registered office" value={p.registered_office} />
+              </div>
+            )}
           </div>
         </section>
 
@@ -177,6 +203,11 @@ export default function VPRDocument({ p }: { p: Project }) {
                 Source: {latestDeclared.source}
                 {latestDeclared.interpolated && ' — interpolated, not backed by a filing'}
               </div>
+              {p.delay_cause && (
+                <div className="text-[9.5px] text-[color:var(--paper-muted)] leading-snug mt-1.5">
+                  Extension — stated cause: {p.delay_cause}
+                </div>
+              )}
             </>
           ) : (
             <p className="text-[11px] leading-relaxed text-[color:var(--paper-muted)]">
@@ -242,11 +273,15 @@ export default function VPRDocument({ p }: { p: Project }) {
             </p>
           )}
 
-          {(frames?.frames.some(f => f.status === 'placeholder') ||
-            photos?.photos.some(ph => ph.date === PENDING_DATE)) && (
+          {(placeholderFrames > 0 || pendingPhotoDates > 0) && (
             <p className="text-[9px] text-[color:var(--paper-muted)] leading-snug mt-2 italic">
-              Note: imagery referenced above is placeholder pending export, and ground-photograph
-              capture dates are pending verification. This record is not evidentially complete.
+              Note:
+              {placeholderFrames > 0 &&
+                ` ${placeholderFrames} of ${frames?.frames.length} satellite frames are placeholders pending export`}
+              {placeholderFrames > 0 && pendingPhotoDates > 0 && ';'}
+              {pendingPhotoDates > 0 &&
+                ` capture dates for ${pendingPhotoDates} of ${photos?.photos.length} ground photographs are pending verification`}
+              . This record is not evidentially complete.
             </p>
           )}
         </section>
@@ -261,6 +296,7 @@ export default function VPRDocument({ p }: { p: Project }) {
               'Interior and finishing works are not observed by this method.',
               'Satellite baseline resolves footprint and structural change only; it does not resolve materials, workmanship or services.',
               'This record reflects physical observation as at the dates stated. It is not a certification of quality, of statutory compliance, or of title.',
+              'This record concerns physical observation only. It makes no finding on fund utilisation, on the operation of the designated account, or on escrow compliance.',
               'Observed progress is expressed as a proportion of the declared scope of work and carries an observation tolerance of ±8 percentage points.',
             ].map((line, i) => (
               <li key={i} className="text-[9.5px] leading-relaxed flex gap-2 text-[color:var(--paper-muted)]">

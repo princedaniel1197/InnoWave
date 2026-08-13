@@ -136,9 +136,16 @@ body {
 
   /* Compress the vertical rhythm so the longest record — a synthetic one,
      which carries an extra banner — still clears one page with headroom. */
-  .vpr-rule { margin-top: 7px !important; margin-bottom: 7px !important; }
+  .vpr-rule { margin-top: 5px !important; margin-bottom: 5px !important; }
   .vpr-syn-banner { margin-top: 6px !important; padding: 3px 8px !important; }
-  .vpr-paper section { margin-top: 10px !important; }
+  .vpr-paper section { margin-top: 8px !important; }
+
+  /* The project block goes three-up on paper — same fields, one fewer row. */
+  .vpr-fields {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px 18px !important;
+  }
+  .vpr-fields > .col-span-2 { grid-column: span 3 / span 3 !important; }
   .vpr-paper ul > li { line-height: 1.34 !important; }
   .vpr-paper footer { margin-top: 8px !important; }
 

@@ -4,11 +4,26 @@ import Link from 'next/link'
 
 import type { FramesManifest, PhotosManifest, Project } from '@/lib/types'
 import { displayName, displayPromoter, displayRera } from '@/lib/data'
-import { TOLERANCE_POINTS, isSynthetic, readDivergence } from '@/lib/provenance'
+import {
+  TOLERANCE_POINTS,
+  canPlotSeries,
+  hasAnyProgressData,
+  isSynthetic,
+  readDivergence,
+} from '@/lib/provenance'
+import CertifiedPoint from '@/components/site/CertifiedPoint'
 import DivergenceChart from '@/components/site/DivergenceChart'
 import PhotoStrip from '@/components/site/PhotoStrip'
+import ProjectFacts from '@/components/site/ProjectFacts'
 import WipeSlider from '@/components/site/WipeSlider'
-import { Label, PendingChip, ProvenanceChip, RoadmapChip, StatusChip } from '@/components/Chips'
+import {
+  Label,
+  PendingChip,
+  ProvenanceChip,
+  RoadmapChip,
+  StatusChip,
+  SyntheticChip,
+} from '@/components/Chips'
 
 function Stat({
   label,
@@ -109,8 +124,26 @@ export default function SiteContent({
           </section>
         )}
 
-        {/* 3 — Divergence chart */}
-        <DivergenceChart p={p} />
+        {/* 3 — Evidence position.
+            A two-line curve is drawn only where a trajectory exists on both
+            sides. With one certified observation, drawing a line would imply
+            filings that do not exist. */}
+        {!hasAnyProgressData(p) ? (
+          <section className="bg-surface border border-border rounded-sm">
+            <div className="px-5 py-3 border-b border-border flex items-center justify-between gap-2">
+              <Label>Evidence Position</Label>
+              <PendingChip label="No figures on file" />
+            </div>
+            <p className="px-5 py-8 text-sm text-gray-light text-center max-w-[60ch] mx-auto leading-relaxed">
+              No declared or observed figure has been retrieved for this site. Nothing has been
+              estimated in their place.
+            </p>
+          </section>
+        ) : canPlotSeries(p) ? (
+          <DivergenceChart p={p} />
+        ) : (
+          <CertifiedPoint p={p} />
+        )}
 
         {/* 4 — Headline stats */}
         <section className="border border-border rounded-sm overflow-hidden">
@@ -129,8 +162,10 @@ export default function SiteContent({
               value={div.observedPct === null ? '—' : `${div.observedPct}%`}
               cite={observedCite}
             />
+            {/* "Divergence" is a finding. A REAL entity within tolerance gets
+                the neutral word — CLAUDE.md rule 4. */}
             <Stat
-              label="Divergence"
+              label={div.beyondTolerance ? 'Divergence' : 'Gap'}
               value={div.points === null ? '—' : `${Math.abs(div.points)} pt`}
               cite={
                 div.points === null
@@ -149,6 +184,30 @@ export default function SiteContent({
 
         {/* 5 — Ground record */}
         {photos && <PhotoStrip manifest={photos} projectId={p.id} />}
+
+        {/* 5b — Registry & filings */}
+        <ProjectFacts p={p} />
+
+        {/* 5c — The argument this project carries */}
+        {p.thesis && (
+          <section
+            className={`border rounded-sm ${
+              synth ? 'border-amber/30 bg-amber/[0.03]' : 'border-border-gold bg-gold/[0.03]'
+            }`}
+          >
+            <div className="px-5 py-3 border-b border-border flex flex-wrap items-center justify-between gap-2">
+              <Label>{p.thesis.heading}</Label>
+              {synth && <SyntheticChip />}
+            </div>
+            <div className="px-5 py-4 space-y-3 max-w-[86ch]">
+              {p.thesis.body.map((para, i) => (
+                <p key={i} className="text-[13px] text-gray-light leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* 6 — Footer actions */}
         <section className="bg-surface border border-border rounded-sm p-5">

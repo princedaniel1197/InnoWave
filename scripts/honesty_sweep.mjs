@@ -155,7 +155,67 @@ async function main() {
       : fail(`pending data chipped on /site/${p.id}`, `chip=${chipped} rawPlaceholderLeaked=${leaked}`)
   }
 
-  /* ── 9. The DEMONSTRATION tag is on every route ───────────────────────── */
+  /* ── 9. Escrow framing sits on Meridian, never on Divya ───────────────────
+     Allottee collections on Divya Villas are zero. Nothing was ever collected
+     into the designated account, so nothing could have been drawn from it
+     against the 94% certificate. No route for a REAL entity may imply
+     otherwise. The drawdown story belongs to the synthetic scenario. */
+  const DRAWDOWN_CLAIMS = [
+    'drawdown',
+    'drawn down',
+    'drawn from',
+    'released against',
+    'withdrawn against',
+    'funds were released',
+    'escrow release',
+    'released from the designated account',
+  ]
+  for (const p of real) {
+    for (const route of [`/site/${p.id}/`, `/record/${p.id}/`]) {
+      const t = (await get(route)).toLowerCase()
+      const hits = DRAWDOWN_CLAIMS.filter(c => t.includes(c))
+      hits.length === 0
+        ? pass(`no drawdown claim on ${route}`)
+        : fail(`no drawdown claim on ${route}`, `found: ${hits.join(', ')}`)
+    }
+  }
+  {
+    const t = (await get('/site/project-meridian/')).toLowerCase()
+    t.includes('designated account') && t.includes('withdrawal')
+      ? pass('escrow framing present on synthetic scenario')
+      : fail('escrow framing present on synthetic scenario', 'Meridian should carry the drawdown story')
+  }
+
+  /* ── 10. The designated account number is never rendered ──────────────── */
+  for (const p of projects) {
+    for (const route of [`/site/${p.id}/`, `/record/${p.id}/`]) {
+      const t = (await get(route)).toLowerCase()
+      if (t.includes('account number') || /a\/c\s*(no|number)/.test(t)) {
+        fail(`no account number on ${route}`, 'account-number label found')
+      }
+    }
+  }
+  if (!results.some(r => !r.ok && r.name.startsWith('no account number'))) {
+    pass('no account number rendered on any route')
+  }
+
+  /* ── 11. Filed figures are never silently reformatted ─────────────────── */
+  for (const p of projects) {
+    if (!p.finance) continue
+    const t = await get(`/site/${p.id}/`)
+    const figures = [
+      p.finance.project_cost,
+      p.finance.funds_utilised_to_date,
+      p.finance.promoter_own_funds,
+      p.finance.total_borrowings,
+    ]
+    const missing = figures.filter(f => !t.includes(f))
+    missing.length === 0
+      ? pass(`filed figures render verbatim on /site/${p.id}`)
+      : fail(`filed figures render verbatim on /site/${p.id}`, `altered or absent: ${missing.join(', ')}`)
+  }
+
+  /* ── 12. The DEMONSTRATION tag is on every route ──────────────────────── */
   for (const p of projects) {
     for (const route of ['/', `/site/${p.id}/`, `/record/${p.id}/`]) {
       const t = await get(route)
