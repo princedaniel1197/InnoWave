@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "sweep": "node scripts/honesty_sweep.mjs",
+    "routes": "node scripts/route_check.mjs",
     "assets": "python scripts/build_assets.py",
     "map": "python scripts/extract_map.py"
   },

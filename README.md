@@ -50,6 +50,7 @@ no API routes, no database, no auth and no environment variables.
 | `npm run dev` | Dev server on :3000 |
 | `npm run build` | Production build |
 | `npm run sweep` | **Honesty sweep** — walks every route on a running server and asserts the provenance rules against rendered HTML. 36 checks. |
+| `npm run routes` | Every route returns 200 and every asset it references resolves. 13 routes. |
 | `npm run assets` | Rebuilds `public/photos`, `public/frames`, `public/brand`. Needs Python + Pillow. |
 | `npm run map` | Re-extracts Karnataka district outlines. Needs the `vantis/` repo present. |
 
@@ -141,6 +142,11 @@ No environment variables. No build-time secrets.
 The one runtime external call is the CARTO dark tile layer. If it fails — captive portal,
 hostile wifi, offline laptop — the map swaps to a bundled SVG outline of Karnataka with the
 pins positioned from lat/lng. **The demo never shows a broken grey map.**
+
+> **Check this once on a real connection before the pitch:** the build environment had no
+> outbound network, so the fallback path is thoroughly tested but the live-tile path is not.
+> Open `/` online and confirm the dark basemap appears under the six pins. See
+> `DECISIONS.md` §15.
 
 ---
 

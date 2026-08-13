@@ -224,7 +224,29 @@ degrades gracefully — arguably a point in the format's favour when a judge cli
 
 ---
 
-## 15. `next build` must not run while `next dev` is live
+## 15. The live CARTO tile path could not be tested here — verify it before the pitch
+
+**Not a decision — a disclosure, and the one thing I could not verify.**
+
+The build environment has no outbound network. Every time the portfolio map rendered during
+development, the **fallback** fired and the bundled SVG outline took over. That path is
+therefore extremely well tested: 31 districts, 6 pins, all within the viewBox, click-to-select
+working.
+
+What I could **not** exercise is the happy path — CARTO tiles actually loading, and the
+Leaflet `divIcon` pins rendering on top of them.
+
+**What to do:** open `/` on a normal internet connection and confirm the dark tile basemap
+appears with six gold pins on it. If it does, both paths are proven. If it does not, the
+fallback still carries the demo — which is the point of rule 12 — but tell me and I will fix
+the tile layer.
+
+Everything downstream of the tile decision (pin colours, the S badge, selection, the card)
+is shared between both paths and is verified.
+
+---
+
+## 16. `next build` must not run while `next dev` is live
 
 **Not a design decision — an operational note.** Running a production build against the same
 `.next` directory as a running dev server corrupts it (`Cannot find module './vendor-chunks/…'`).
