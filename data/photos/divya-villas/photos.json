@@ -1,0 +1,19 @@
+{
+  "note": "Ground record for Divya Villas. Thirteen site photographs. Capture dates are PENDING_VERIFICATION until the founder confirms them from the original file metadata; until then each photo renders 'date pending verification'. To go live: replace the date string with an ISO date. Do not change the file names.",
+  "project_id": "divya-villas",
+  "photos": [
+    { "file": "01_road.jpeg", "caption": "Internal road — formed and surfaced", "date": "PENDING_VERIFICATION" },
+    { "file": "02_road.jpeg", "caption": "Internal road — secondary spine", "date": "PENDING_VERIFICATION" },
+    { "file": "03_road.jpeg", "caption": "Internal road — kerb and edge detail", "date": "PENDING_VERIFICATION" },
+    { "file": "04_site.jpeg", "caption": "Site overview — north sector", "date": "PENDING_VERIFICATION" },
+    { "file": "05_site.jpeg", "caption": "Site overview — central sector", "date": "PENDING_VERIFICATION" },
+    { "file": "06_road.jpeg", "caption": "Internal road — junction", "date": "PENDING_VERIFICATION" },
+    { "file": "07_site.jpeg", "caption": "Site overview — south sector", "date": "PENDING_VERIFICATION" },
+    { "file": "08_underground_drainage.jpeg", "caption": "Underground drainage — chamber and line", "date": "PENDING_VERIFICATION" },
+    { "file": "09_layout.jpeg", "caption": "Layout demarcation — plot boundaries", "date": "PENDING_VERIFICATION" },
+    { "file": "10_park.jpeg", "caption": "Park area — landscaped open space", "date": "PENDING_VERIFICATION" },
+    { "file": "11_layout.jpeg", "caption": "Layout demarcation — approach and frontage", "date": "PENDING_VERIFICATION" },
+    { "file": "12_borewell.jpeg", "caption": "Borewell — water supply installation", "date": "PENDING_VERIFICATION" },
+    { "file": "13_streetlight.jpeg", "caption": "Street lighting — installed pole and fixture", "date": "PENDING_VERIFICATION" }
+  ]
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "divya-villas",
+    "name": "Divya Villas",
+    "promoter": "JDA Projects",
+    "rera_no": "PRM/KA/RERA/1268/378/PR/180924/007034",
+    "provenance": "REAL",
+    "status": "verified",
+    "location": { "lat": 12.35, "lng": 76.62, "label": "Mysuru", "approx": true },
+    "declared_series": [
+      { "date": "2024-09-18", "pct": 0, "source": "Registration, 18.09.2024", "interpolated": false },
+      { "date": "2025-06-30", "pct": 78, "source": "PENDING — founder to fill from QPR", "interpolated": true },
+      { "date": "2025-12-06", "pct": 94, "source": "Form Ex5, Engineer's Certificate, 06.12.2025", "interpolated": false }
+    ],
+    "observed_series": [
+      { "date": "2025-12-06", "pct": 91, "basis": "estimated from imagery — pending founder annotation", "interpolated": false }
+    ],
+    "frames_manifest": "data/frames/divya-villas/frames.json",
+    "photos_manifest": "data/photos/divya-villas/photos.json",
+    "record_no": "VPR-2026-007034-0001",
+    "observed_state": [
+      "Internal roads formed and surfaced across the registered layout.",
+      "Underground drainage laid; borewell and overhead water infrastructure in place.",
+      "Layout demarcation, park area and street lighting present on site.",
+      "No active heavy construction plant observed at time of ground capture."
+    ],
+    "capture_provenance": [
+      {
+        "source_type": "Satellite archive",
+        "operator": "Third-party archive imagery — historical",
+        "capture_dates": "PENDING — founder to confirm on frame export",
+        "frame_refs": "frame-2024-01 … frame-2025-12 (6 frames)"
+      },
+      {
+        "source_type": "Ground photograph",
+        "operator": "DGCA-certified operator — demo placeholder",
+        "capture_dates": "PENDING_VERIFICATION",
+        "frame_refs": "13 ground records, 01_road … 13_streetlight"
+      }
+    ]
+  },
+
+  {
+    "id": "bengaluru-monitored-a",
+    "name": "FILL_FROM_KRERA_PORTAL",
+    "display_placeholder": "Monitored Project A · Bengaluru",
+    "promoter": "FILL_FROM_KRERA_PORTAL",
+    "rera_no": "FILL_FROM_KRERA_PORTAL",
+    "provenance": "REAL",
+    "status": "monitored",
+    "location": { "lat": 12.9698, "lng": 77.7499, "label": "Whitefield, Bengaluru", "approx": true },
+    "declared_series": [
+      { "date": "FILL_FROM_KRERA_PORTAL", "pct": -1, "source": "FILL_FROM_KRERA_PORTAL", "interpolated": true }
+    ],
+    "observed_series": [],
+    "frames_manifest": null,
+    "photos_manifest": null,
+    "record_no": "VPR-2026-PENDING-0002"
+  },
+
+  {
+    "id": "bengaluru-monitored-b",
+    "name": "FILL_FROM_KRERA_PORTAL",
+    "display_placeholder": "Monitored Project B · Bengaluru",
+    "promoter": "FILL_FROM_KRERA_PORTAL",
+    "rera_no": "FILL_FROM_KRERA_PORTAL",
+    "provenance": "REAL",
+    "status": "monitored",
+    "location": { "lat": 13.0359, "lng": 77.597, "label": "Hebbal, Bengaluru", "approx": true },
+    "declared_series": [
+      { "date": "FILL_FROM_KRERA_PORTAL", "pct": -1, "source": "FILL_FROM_KRERA_PORTAL", "interpolated": true }
+    ],
+    "observed_series": [],
+    "frames_manifest": null,
+    "photos_manifest": null,
+    "record_no": "VPR-2026-PENDING-0003"
+  },
+
+  {
+    "id": "bengaluru-monitored-c",
+    "name": "FILL_FROM_KRERA_PORTAL",
+    "display_placeholder": "Monitored Project C · Bengaluru",
+    "promoter": "FILL_FROM_KRERA_PORTAL",
+    "rera_no": "FILL_FROM_KRERA_PORTAL",
+    "provenance": "REAL",
+    "status": "monitored",
+    "location": { "lat": 12.9121, "lng": 77.6872, "label": "Sarjapur Road, Bengaluru", "approx": true },
+    "declared_series": [
+      { "date": "FILL_FROM_KRERA_PORTAL", "pct": -1, "source": "FILL_FROM_KRERA_PORTAL", "interpolated": true }
+    ],
+    "observed_series": [],
+    "frames_manifest": null,
+    "photos_manifest": null,
+    "record_no": "VPR-2026-PENDING-0004"
+  },
+
+  {
+    "id": "project-kaveri",
+    "name": "Project Kaveri",
+    "promoter": "Illustrative promoter — no real party depicted",
+    "rera_no": "NOT REGISTERED — SYNTHETIC SCENARIO",
+    "provenance": "SYNTHETIC",
+    "status": "watch",
+    "scenario_note": "Illustrative scenario: declared and observed progress drift mildly apart over eight quarters. No real developer, project or filing is depicted.",
+    "location": { "lat": 12.7409, "lng": 77.8253, "label": "Illustrative site · Karnataka" },
+    "declared_series": [
+      { "date": "2024-03-31", "pct": 5, "source": "Illustrative quarterly filing Q1", "interpolated": false },
+      { "date": "2024-06-30", "pct": 14, "source": "Illustrative quarterly filing Q2", "interpolated": false },
+      { "date": "2024-09-30", "pct": 24, "source": "Illustrative quarterly filing Q3", "interpolated": false },
+      { "date": "2024-12-31", "pct": 33, "source": "Illustrative quarterly filing Q4", "interpolated": false },
+      { "date": "2025-03-31", "pct": 42, "source": "Illustrative quarterly filing Q5", "interpolated": false },
+      { "date": "2025-06-30", "pct": 50, "source": "Illustrative quarterly filing Q6", "interpolated": false },
+      { "date": "2025-09-30", "pct": 57, "source": "Illustrative quarterly filing Q7", "interpolated": false },
+      { "date": "2025-12-31", "pct": 64, "source": "Illustrative quarterly filing Q8", "interpolated": false }
+    ],
+    "observed_series": [
+      { "date": "2024-03-31", "pct": 5, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-06-30", "pct": 13, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-09-30", "pct": 22, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-12-31", "pct": 30, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2025-03-31", "pct": 36, "basis": "Illustrative — interpolated between captures", "interpolated": true },
+      { "date": "2025-06-30", "pct": 41, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2025-09-30", "pct": 46, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2025-12-31", "pct": 52, "basis": "Illustrative satellite baseline", "interpolated": false }
+    ],
+    "frames_manifest": null,
+    "photos_manifest": null,
+    "record_no": "VPR-2026-SYN014-0005",
+    "observed_state": [
+      "Illustrative scenario — the lines below describe a fictional site.",
+      "Structural frame observed on part of the declared footprint.",
+      "Remaining footprint shows foundation-stage work only.",
+      "Activity level consistent between the two most recent captures."
+    ],
+    "capture_provenance": [
+      {
+        "source_type": "Satellite archive (illustrative)",
+        "operator": "Illustrative — no capture was performed",
+        "capture_dates": "2024-03-31 … 2025-12-31, quarterly",
+        "frame_refs": "Not applicable — synthetic scenario"
+      }
+    ]
+  },
+
+  {
+    "id": "project-meridian",
+    "name": "Project Meridian",
+    "promoter": "Illustrative promoter — no real party depicted",
+    "rera_no": "NOT REGISTERED — SYNTHETIC SCENARIO",
+    "provenance": "SYNTHETIC",
+    "status": "divergence",
+    "scenario_note": "Illustrative scenario: declared progress continues to climb while observed physical progress flattens from month 14. No real developer, project or filing is depicted.",
+    "location": { "lat": 13.2482, "lng": 77.7124, "label": "Illustrative site · Karnataka" },
+    "declared_series": [
+      { "date": "2023-06-30", "pct": 0, "source": "Illustrative registration", "interpolated": false },
+      { "date": "2023-09-30", "pct": 8, "source": "Illustrative quarterly filing Q2", "interpolated": false },
+      { "date": "2023-12-31", "pct": 18, "source": "Illustrative quarterly filing Q3", "interpolated": false },
+      { "date": "2024-03-31", "pct": 28, "source": "Illustrative quarterly filing Q4", "interpolated": false },
+      { "date": "2024-06-30", "pct": 38, "source": "Illustrative quarterly filing Q5", "interpolated": false },
+      { "date": "2024-09-30", "pct": 45, "source": "Illustrative quarterly filing Q6", "interpolated": false },
+      { "date": "2024-12-31", "pct": 50, "source": "Illustrative quarterly filing Q7", "interpolated": false },
+      { "date": "2025-03-31", "pct": 55, "source": "Illustrative quarterly filing Q8", "interpolated": false },
+      { "date": "2025-06-30", "pct": 59, "source": "Illustrative quarterly filing Q9", "interpolated": false },
+      { "date": "2025-09-30", "pct": 62, "source": "Illustrative quarterly filing Q10", "interpolated": false }
+    ],
+    "observed_series": [
+      { "date": "2023-06-30", "pct": 0, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2023-09-30", "pct": 8, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2023-12-31", "pct": 17, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-03-31", "pct": 27, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-06-30", "pct": 36, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2024-09-30", "pct": 38, "basis": "Illustrative drone capture", "interpolated": false },
+      { "date": "2024-12-31", "pct": 38, "basis": "Illustrative satellite baseline", "interpolated": false },
+      { "date": "2025-03-31", "pct": 38, "basis": "Illustrative — interpolated between captures", "interpolated": true },
+      { "date": "2025-06-30", "pct": 38, "basis": "Illustrative drone capture", "interpolated": false },
+      { "date": "2025-09-30", "pct": 38, "basis": "Illustrative drone capture", "interpolated": false }
+    ],
+    "frames_manifest": "data/frames/project-meridian/frames.json",
+    "photos_manifest": null,
+    "record_no": "VPR-2026-SYN027-0006",
+    "observed_state": [
+      "Illustrative scenario — the lines below describe a fictional site.",
+      "Two structural cores topped out; no change across the last four captures.",
+      "Approximately 60% of the declared footprint remains at foundation stage.",
+      "No material change in built footprint observed since month 14."
+    ],
+    "capture_provenance": [
+      {
+        "source_type": "Satellite archive (illustrative)",
+        "operator": "Illustrative — no capture was performed",
+        "capture_dates": "2023-06-30 … 2025-09-30, quarterly",
+        "frame_refs": "frame-2023-06 … frame-2025-09 (6 frames)"
+      },
+      {
+        "source_type": "Drone flight (illustrative)",
+        "operator": "DGCA-certified operator — demo placeholder",
+        "capture_dates": "2024-09-30, 2025-06-30, 2025-09-30",
+        "frame_refs": "Not applicable — synthetic scenario"
+      }
+    ]
+  }
+]

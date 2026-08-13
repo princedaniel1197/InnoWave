@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Void Black — the single theme ────────────────────────────────────────── */
+:root {
+  --bg: #0A0A0F; --chrome: #0C0C13; --inset: #0B0B12;
+  --surface: #0F0F18; --surface2: #161622;
+  --border: #1E1E2E; --line: #15151F; --soft: #2A2A3E;
+  --ink: #F0EEE8; --text2: #C8C8D8; --gray: #9090AA;
+  --muted: #6B6B88; --dim: #54546B;
+  --accent: #C9A84C; --accent-hi: #E8D5A3; --accent-dim: #8B7035;
+  --accent-tint: rgba(201, 168, 76, 0.07);
+  --accent-rgb: 201 168 76;
+  --border-gold: #3A3020;
+  --green: #22C55E; --amber: #F59E0B; --red: #EF4444; --blue: #3B82F6;
+  --green-rgb: 34 197 94; --amber-rgb: 245 158 11; --red-rgb: 239 68 68; --blue-rgb: 59 130 246;
+
+  /* Paper — the VPR document surface */
+  --paper: #F5F1E8; --paper-ink: #1A1A18; --paper-muted: #6B675E; --paper-line: #D8D2C4;
+
+  color-scheme: dark;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.4s ease forwards; }
+
+@keyframes cascade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-cascade { opacity: 0; animation: cascade-up 0.5s ease forwards; }
+
+/* ── Leaflet overrides — dark chrome, no default marker chrome ────────────── */
+.leaflet-container {
+  background: #0B0B12 !important;
+  font-family: var(--font-dm-sans), sans-serif;
+  outline: none;
+}
+.leaflet-control-attribution {
+  background: rgba(10,10,15,0.78) !important;
+  color: var(--dim) !important;
+  font-size: 9px !important;
+  border-top-left-radius: 2px;
+}
+.leaflet-control-attribution a { color: var(--muted) !important; }
+.leaflet-control-zoom a {
+  background: var(--surface) !important;
+  color: var(--gray) !important;
+  border-color: var(--border) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: var(--surface2) !important;
+  color: var(--accent) !important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--border);
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+.leaflet-popup-content { margin: 0 !important; }
+.leaflet-popup-close-button { color: var(--muted) !important; }
+
+/* ── Print — the VPR document, one clean page ─────────────────────────────── */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm;
+  }
+
+  html, body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  /* Everything that is chrome disappears */
+  .print-hide { display: none !important; }
+
+  /* The paper fills the page and loses its floating-card treatment */
+  .vpr-paper {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    box-shadow: none !important;
+    aspect-ratio: auto !important;
+    font-size: 9.2pt;
+    line-height: 1.42;
+  }
+
+  .vpr-paper * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Never break a block across the page fold */
+  .vpr-block { break-inside: avoid; page-break-inside: avoid; }
+  .vpr-paper h1, .vpr-paper h2 { break-after: avoid; page-break-after: avoid; }
+  .vpr-paper table { break-inside: avoid; page-break-inside: avoid; }
+
+  .vpr-watermark { opacity: 0.10 !important; }
+}

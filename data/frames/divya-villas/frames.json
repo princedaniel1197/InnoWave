@@ -1,0 +1,12 @@
+{
+  "note": "All frames must share identical centre, zoom and dimensions. Founder exports these from Google Earth Pro historical imagery. To go live: overwrite the file at public/frames/divya-villas/<file> and flip that frame's status from 'placeholder' to 'real'. Do not change the file names.",
+  "project_id": "divya-villas",
+  "frames": [
+    { "file": "frame-2024-01.jpg", "date": "2024-01-15", "source": "satellite archive", "status": "placeholder" },
+    { "file": "frame-2024-06.jpg", "date": "2024-06-15", "source": "satellite archive", "status": "placeholder" },
+    { "file": "frame-2024-11.jpg", "date": "2024-11-15", "source": "satellite archive", "status": "placeholder" },
+    { "file": "frame-2025-04.jpg", "date": "2025-04-15", "source": "satellite archive", "status": "placeholder" },
+    { "file": "frame-2025-08.jpg", "date": "2025-08-15", "source": "satellite archive", "status": "placeholder" },
+    { "file": "frame-2025-12.jpg", "date": "2025-12-06", "source": "satellite archive", "status": "placeholder" }
+  ]
+}
