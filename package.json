@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sweep": "node scripts/honesty_sweep.mjs",
+    "assets": "python scripts/build_assets.py",
+    "map": "python scripts/extract_map.py"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
