@@ -1,4 +1,5 @@
 import type { Project, ProjectStatus, Provenance } from './types'
+import { formatDateLong } from './utils'
 
 /**
  * Enforcement of CLAUDE.md rule 4. Everything a screen needs to know about how
@@ -103,7 +104,7 @@ export function readDivergence(p: Project): DivergenceReading {
   if (beyondTolerance) {
     sentence =
       `Observed physical progress is ${points} percentage points below the progress declared ` +
-      `by the promoter as of ${d.date}. The two records do not agree.`
+      `by the promoter as of ${formatDateLong(d.date)}. The two records do not agree.`
   } else if (Math.abs(points) <= TOLERANCE_POINTS) {
     sentence =
       `Observed physical progress agrees with the progress declared by the promoter, within the ` +
@@ -111,7 +112,7 @@ export function readDivergence(p: Project): DivergenceReading {
   } else {
     sentence =
       `Observed physical progress is ${Math.abs(points)} percentage points above the declared figure ` +
-      `as of ${d.date}.`
+      `as of ${formatDateLong(d.date)}.`
   }
 
   return { declaredPct: d.pct, observedPct: o.pct, points, beyondTolerance, sentence }
