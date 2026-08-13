@@ -55,13 +55,12 @@ export default function VPRDocument({ p }: { p: Project }) {
 
   return (
     <div
-      className="vpr-paper relative mx-auto bg-paper text-[color:var(--paper-ink)] overflow-hidden"
+      className="vpr-paper relative mx-auto bg-paper text-[color:var(--paper-ink)] overflow-hidden px-6 py-8 sm:px-[52px] sm:py-[44px]"
       style={{
         width: '100%',
         maxWidth: '820px',
         aspectRatio: '1 / 1.414',
         minHeight: '1000px',
-        padding: '44px 52px',
       }}
     >
       {/* Diagonal SPECIMEN watermark */}
@@ -206,7 +205,9 @@ export default function VPRDocument({ p }: { p: Project }) {
         <section className="vpr-block">
           <SectionTitle n="5">Capture provenance</SectionTitle>
           {p.capture_provenance?.length ? (
-            <table className="w-full border-collapse">
+            /* Scrolls within the paper on a narrow screen; full width in print. */
+            <div className="vpr-table-wrap overflow-x-auto">
+            <table className="w-full border-collapse min-w-[420px]">
               <thead>
                 <tr className="border-b border-[color:var(--paper-line)]">
                   {['Source', 'Operator', 'Capture dates', 'Frames'].map(h => (
@@ -234,6 +235,7 @@ export default function VPRDocument({ p }: { p: Project }) {
                 ))}
               </tbody>
             </table>
+            </div>
           ) : (
             <p className="text-[11px] leading-relaxed text-[color:var(--paper-muted)]">
               No capture has been carried out for this site.

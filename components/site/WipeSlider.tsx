@@ -43,6 +43,21 @@ export default function WipeSlider({
   const to = frames[Math.min(toIdx, frames.length - 1)]
   const anyPlaceholder = useMemo(() => frames.some(f => f.status === 'placeholder'), [frames])
 
+  /* A wipe needs two distinct frames. */
+  if (frames.length < 2) {
+    return (
+      <section className="bg-surface border border-border rounded-sm">
+        <div className="px-5 py-3 border-b border-border flex items-center justify-between gap-2">
+          <Label>Imagery Timeline</Label>
+          {anyPlaceholder && <PlaceholderImageryChip />}
+        </div>
+        <p className="px-5 py-8 text-sm text-gray-light text-center">
+          A comparison needs at least two frames. This series has {frames.length}.
+        </p>
+      </section>
+    )
+  }
+
   return (
     <section className="bg-surface border border-border rounded-sm">
       <div className="px-5 py-3 border-b border-border flex flex-wrap items-center justify-between gap-2">
@@ -114,19 +129,21 @@ export default function WipeSlider({
 
         {/* Date scrubber */}
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* from and to may never be the same frame — wiping a frame against
+              itself does nothing and reads as a broken control. */}
           <FrameRow
             legend="Compare from"
             frames={frames}
             active={fromIdx}
-            onPick={i => setFromIdx(Math.min(i, toIdx))}
-            disabledAfter={toIdx}
+            onPick={i => setFromIdx(Math.min(i, toIdx - 1))}
+            disabledAfter={toIdx - 1}
           />
           <FrameRow
             legend="Compare to"
             frames={frames}
             active={toIdx}
-            onPick={i => setToIdx(Math.max(i, fromIdx))}
-            disabledBefore={fromIdx}
+            onPick={i => setToIdx(Math.max(i, fromIdx + 1))}
+            disabledBefore={fromIdx + 1}
           />
         </div>
 
